@@ -3,17 +3,17 @@ library flutter_moko;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_moko/util/color_util.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_moko/util/image_util.dart';
 
 class FastWidget {
   /// 获取Text widget
   static Widget text(String? text,
       {dynamic color = Colors.black87,
-        double fontSize = 16,
-        FontWeight fontWeight = FontWeight.normal,
-        int? maxLines = 1,
-        double? height,
-        TextAlign? textAlign}) {
+      double fontSize = 16,
+      FontWeight fontWeight = FontWeight.normal,
+      int? maxLines = 1,
+      double? height,
+      TextAlign? textAlign}) {
     return Text(
       text ?? "",
       style: TextStyle(
@@ -44,9 +44,7 @@ class FastWidget {
 
   static Widget avatar(String image, double radius) {
     return CircleAvatar(
-      backgroundImage: CachedNetworkImageProvider(
-        image,
-      ),
+      backgroundImage: ImageUtil.getImageProvider(image),
       radius: radius,
     );
   }
@@ -65,7 +63,8 @@ class FastWidget {
     );
   }
 
-  static Widget textButton(String text, {
+  static Widget textButton(
+    String text, {
     VoidCallback? onPressed,
     double borderRadius = 0,
     Color backgroundColor = Colors.black,
