@@ -215,12 +215,12 @@ class AuthInterceptor extends Interceptor {
 class NewAuthorizationInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (response.headers["NewAuthorization"] == null ||
-        response.headers["NewAuthorization"]!.isEmpty) {
+    if (response.headers["Authorization"] == null ||
+        response.headers["Authorization"]!.isEmpty) {
       return super.onResponse(response, handler);
     }
 
-    String accessToken = response.headers["NewAuthorization"]!.first;
+    String accessToken = response.headers["Authorization"]!.first;
     SpUtil.putString(HttpUtil.AuthorizationHeader, accessToken);
     return super.onResponse(response, handler);
   }
