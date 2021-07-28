@@ -138,8 +138,6 @@ class PickerUtil {
   // 显示带农历阳历的日期选项
   static void openLunarSolarDateTimeModalPicker(
     BuildContext context, {
-    DateTime? minValue,
-    DateTime? maxValue,
     LunarSolarValue? value,
     String yearSuffix = "年",
     String monthSuffix = "月",
@@ -345,13 +343,14 @@ class _LunarSolarPickerState extends State<LunarSolarPicker> {
                 child: PickerUtil.makePicker(
                   context,
                   adapter: DateTimePickerAdapter(
-                    type: PickerDateTimeType.kYMD,
-                    isNumberMonth: true,
-                    yearSuffix: widget.yearSuffix,
-                    monthSuffix: widget.monthSuffix,
-                    daySuffix: widget.daySuffix,
-                    value: value.toSolar(),
-                  ),
+                      type: PickerDateTimeType.kYMD,
+                      isNumberMonth: true,
+                      yearSuffix: widget.yearSuffix,
+                      monthSuffix: widget.monthSuffix,
+                      daySuffix: widget.daySuffix,
+                      value: value.toSolar(),
+                      minValue: DateTime(1900, 1, 31),
+                      maxValue: DateTime(2100, 2, 8)),
                   onSelect: (Picker picker, int index, List<int> selecteds) {
                     value = LunarSolarValue(
                       year: 1900 + selecteds[0],
